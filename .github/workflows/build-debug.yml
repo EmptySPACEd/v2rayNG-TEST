@@ -60,6 +60,17 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
+    - name: Restore signing key (so updates install over the old app)
+      env:
+        KEY: ${{ secrets.DEBUG_KEYSTORE_BASE64 }}
+      run: |
+        if [ -n "$KEY" ]; then
+          mkdir -p ~/.android
+          echo "$KEY" | base64 -d > ~/.android/debug.keystore
+        else
+          echo "No DEBUG_KEYSTORE_BASE64 secret set, using a temporary key"
+        fi
+
     - name: Run unit tests and build debug APK
       run: |
         cd ${{ github.workspace }}/V2rayNG
