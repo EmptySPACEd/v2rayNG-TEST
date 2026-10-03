@@ -250,6 +250,8 @@
     <string name="title_pref_copy_hwid">Скопировать HWID</string>
     <string name="summary_pref_copy_hwid">Скопировать HWID, отправляемый при обновлении подписок</string>
     <string name="title_pref_custom_user_agent">User-Agent подписок (пусто = по умолчанию)</string>
+    <string name="title_pref_custom_device_model">Модель устройства, x-device-model (пусто = Generic)</string>
+    <string name="title_pref_custom_os_version">Версия ОС, x-ver-os (пусто = не отправлять)</string>
     <string name="toast_invalid_header_value">Допустимы только печатные ASCII-символы</string>
 
     <string name="title_pref_proxy_sharing_enabled">Разрешать соединения из LAN</string>

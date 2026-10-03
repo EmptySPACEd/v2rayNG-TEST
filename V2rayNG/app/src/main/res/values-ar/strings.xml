@@ -250,6 +250,8 @@
     <string name="title_pref_copy_hwid">نسخ HWID</string>
     <string name="summary_pref_copy_hwid">نسخ HWID المُرسَل عند تحديث الاشتراكات</string>
     <string name="title_pref_custom_user_agent">User-Agent للاشتراكات (فارغ = الافتراضي)</string>
+    <string name="title_pref_custom_device_model">طراز الجهاز، x-device-model (فارغ = Generic)</string>
+    <string name="title_pref_custom_os_version">إصدار النظام، x-ver-os (فارغ = لا يُرسل)</string>
     <string name="toast_invalid_header_value">يُسمح فقط بأحرف ASCII القابلة للطباعة</string>
 
     <string name="title_pref_proxy_sharing_enabled">السماح بالاتصالات من الشبكة المحلية</string>

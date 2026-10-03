@@ -250,6 +250,8 @@
     <string name="title_pref_copy_hwid">Sao chép HWID</string>
     <string name="summary_pref_copy_hwid">Sao chép HWID được gửi khi cập nhật đăng ký</string>
     <string name="title_pref_custom_user_agent">User-Agent đăng ký (để trống = mặc định)</string>
+    <string name="title_pref_custom_device_model">Model thiết bị, x-device-model (để trống = Generic)</string>
+    <string name="title_pref_custom_os_version">Phiên bản HĐH, x-ver-os (để trống = không gửi)</string>
     <string name="toast_invalid_header_value">Chỉ cho phép ký tự ASCII có thể in được</string>
 
     <string name="title_pref_proxy_sharing_enabled">Cho phép kết nối từ mạng LAN</string>

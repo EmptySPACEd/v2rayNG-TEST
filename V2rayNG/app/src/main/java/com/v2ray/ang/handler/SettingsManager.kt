@@ -56,9 +56,16 @@ object SettingsManager {
     /**
      * Returns the global User-Agent override for subscription requests, or null to use the default.
      */
-    fun getCustomUserAgent(): String? {
-        return HttpUtil.normalizeHeaderValue(MmkvManager.decodeSettingsString(AppConfig.PREF_CUSTOM_USER_AGENT))
-            ?.takeIf { it.isNotEmpty() }
+    fun getCustomUserAgent(): String? = getHeaderSetting(AppConfig.PREF_CUSTOM_USER_AGENT)
+
+    /** Returns the `x-device-model` override for subscription requests, or null for the default. */
+    fun getCustomDeviceModel(): String? = getHeaderSetting(AppConfig.PREF_CUSTOM_DEVICE_MODEL)
+
+    /** Returns the `x-ver-os` value for subscription requests, or null to omit the header. */
+    fun getCustomOsVersion(): String? = getHeaderSetting(AppConfig.PREF_CUSTOM_OS_VERSION)
+
+    private fun getHeaderSetting(key: String): String? {
+        return HttpUtil.normalizeHeaderValue(MmkvManager.decodeSettingsString(key))?.takeIf { it.isNotEmpty() }
     }
 
     fun initApp(context: Context) {

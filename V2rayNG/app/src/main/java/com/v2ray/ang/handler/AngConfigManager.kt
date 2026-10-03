@@ -488,6 +488,8 @@ object AngConfigManager {
                 ?: SettingsManager.getCustomUserAgent()
             val requestHeaders = it.subscription.requestHeaders
             val hwid = SettingsManager.getHwid()
+            val deviceModel = SettingsManager.getCustomDeviceModel()
+            val osVersion = SettingsManager.getCustomOsVersion()
             val proxyUsername = SettingsManager.getSocksUsername()
             val proxyPassword = SettingsManager.getSocksPassword()
 
@@ -499,6 +501,8 @@ object AngConfigManager {
                         userAgent = userAgent,
                         requestHeaders = requestHeaders,
                         hwid = hwid,
+                        deviceModel = deviceModel,
+                        osVersion = osVersion,
                         timeout = 15000,
                         httpPort = httpPort,
                         proxyUsername = proxyUsername,
@@ -516,7 +520,9 @@ object AngConfigManager {
                             url = url,
                             userAgent = userAgent,
                             requestHeaders = requestHeaders,
-                            hwid = hwid
+                            hwid = hwid,
+                            deviceModel = deviceModel,
+                            osVersion = osVersion
                         )
                     )
                 } catch (e: Exception) {

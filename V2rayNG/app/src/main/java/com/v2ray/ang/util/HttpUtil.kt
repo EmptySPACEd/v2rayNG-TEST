@@ -24,6 +24,7 @@ object HttpUtil {
     const val HEADER_HWID = "x-hwid"
     const val HEADER_DEVICE_OS = "x-device-os"
     const val HEADER_DEVICE_MODEL = "x-device-model"
+    const val HEADER_OS_VERSION = "x-ver-os"
     const val DEVICE_OS = "Android"
     const val DEVICE_MODEL = "Generic"
 
@@ -47,13 +48,23 @@ object HttpUtil {
      *
      * @param requestBuilder The request builder to modify.
      * @param hwid The hardware identifier to send as `x-hwid`.
+     * @param deviceModel The value for `x-device-model`; [DEVICE_MODEL] when null or blank.
+     * @param osVersion The value for `x-ver-os`; the header is omitted when null or blank.
      */
-    fun applyDeviceHeaders(requestBuilder: Request.Builder, hwid: String?) {
+    fun applyDeviceHeaders(
+        requestBuilder: Request.Builder,
+        hwid: String?,
+        deviceModel: String? = null,
+        osVersion: String? = null
+    ) {
         if (hwid.isNullOrBlank()) return
         requestBuilder
             .header(HEADER_HWID, hwid)
             .header(HEADER_DEVICE_OS, DEVICE_OS)
-            .header(HEADER_DEVICE_MODEL, DEVICE_MODEL)
+            .header(HEADER_DEVICE_MODEL, deviceModel?.takeIf { it.isNotBlank() } ?: DEVICE_MODEL)
+        if (!osVersion.isNullOrBlank()) {
+            requestBuilder.header(HEADER_OS_VERSION, osVersion)
+        }
     }
 
     /**
@@ -199,7 +210,7 @@ object HttpUtil {
 
             applyEmbeddedBasicAuthHeader(currentUrl, requestBuilder)
             // Applied before the subscription's own request headers so those can override them.
-            applyDeviceHeaders(requestBuilder, request.hwid)
+            applyDeviceHeaders(requestBuilder, request.hwid, request.deviceModel, request.osVersion)
 
             val headersMap = JsonUtil.parseHeadersToMap(request.requestHeaders)
             for ((key, value) in headersMap) {

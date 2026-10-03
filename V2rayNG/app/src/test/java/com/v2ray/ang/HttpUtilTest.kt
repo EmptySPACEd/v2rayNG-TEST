@@ -79,4 +79,25 @@ class HttpUtilTest {
         builder.header("x-hwid", "from-subscription")
         assertEquals("from-subscription", builder.build().header("x-hwid"))
     }
+
+    @Test
+    fun applyDeviceHeadersUsesCustomModelAndOsVersion() {
+        val builder = Request.Builder().url("https://example.com/sub")
+        HttpUtil.applyDeviceHeaders(builder, "hwid-1", "OnePlus CPH2653", "Android 16")
+        val request = builder.build()
+        assertEquals("OnePlus CPH2653", request.header("x-device-model"))
+        assertEquals("Android 16", request.header("x-ver-os"))
+        assertEquals("Android", request.header("x-device-os"))
+    }
+
+    @Test
+    fun applyDeviceHeadersDefaultsModelAndOmitsBlankOsVersion() {
+        listOf(null, "", " ").forEach { blank ->
+            val builder = Request.Builder().url("https://example.com/sub")
+            HttpUtil.applyDeviceHeaders(builder, "hwid-1", blank, blank)
+            val request = builder.build()
+            assertEquals("Generic", request.header("x-device-model"))
+            assertNull(request.header("x-ver-os"))
+        }
+    }
 }

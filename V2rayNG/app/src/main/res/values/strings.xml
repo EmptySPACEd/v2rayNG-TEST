@@ -250,6 +250,8 @@
     <string name="title_pref_copy_hwid">Copy HWID</string>
     <string name="summary_pref_copy_hwid">Copy the HWID sent when updating subscriptions</string>
     <string name="title_pref_custom_user_agent">Subscription User-Agent (empty = default)</string>
+    <string name="title_pref_custom_device_model">Device model, x-device-model (empty = Generic)</string>
+    <string name="title_pref_custom_os_version">OS version, x-ver-os (empty = not sent)</string>
     <string name="toast_invalid_header_value">Only printable ASCII characters are allowed</string>
 
     <string name="title_pref_proxy_sharing_enabled">Allow connections from the LAN</string>

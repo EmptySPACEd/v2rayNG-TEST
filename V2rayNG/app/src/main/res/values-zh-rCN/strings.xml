@@ -250,6 +250,8 @@
     <string name="title_pref_copy_hwid">复制 HWID</string>
     <string name="summary_pref_copy_hwid">复制更新订阅时发送的 HWID</string>
     <string name="title_pref_custom_user_agent">订阅 User-Agent（留空 = 默认）</string>
+    <string name="title_pref_custom_device_model">设备型号 x-device-model（留空 = Generic）</string>
+    <string name="title_pref_custom_os_version">系统版本 x-ver-os（留空 = 不发送）</string>
     <string name="toast_invalid_header_value">仅允许可打印的 ASCII 字符</string>
 
     <string name="title_pref_proxy_sharing_enabled">允许来自局域网的连接</string>

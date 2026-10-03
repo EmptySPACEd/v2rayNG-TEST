@@ -76,6 +76,8 @@ object AppConfig {
     const val PREF_CUSTOM_HWID = "pref_custom_hwid"
     const val PREF_GENERATED_HWID = "pref_generated_hwid"
     const val PREF_CUSTOM_USER_AGENT = "pref_custom_user_agent"
+    const val PREF_CUSTOM_DEVICE_MODEL = "pref_custom_device_model"
+    const val PREF_CUSTOM_OS_VERSION = "pref_custom_os_version"
     const val PREF_LOGLEVEL = "pref_core_loglevel"
     const val PREF_OUTBOUND_DOMAIN_RESOLVE_METHOD = "pref_outbound_domain_resolve_method"
     const val PREF_MODE = "pref_mode"

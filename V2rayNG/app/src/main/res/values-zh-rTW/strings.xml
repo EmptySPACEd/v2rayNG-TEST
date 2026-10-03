@@ -250,6 +250,8 @@
     <string name="title_pref_copy_hwid">複製 HWID</string>
     <string name="summary_pref_copy_hwid">複製更新訂閱時傳送的 HWID</string>
     <string name="title_pref_custom_user_agent">訂閱 User-Agent（留空 = 預設）</string>
+    <string name="title_pref_custom_device_model">裝置型號 x-device-model（留空 = Generic）</string>
+    <string name="title_pref_custom_os_version">系統版本 x-ver-os（留空 = 不傳送）</string>
     <string name="toast_invalid_header_value">僅允許可列印的 ASCII 字元</string>
 
     <string name="title_pref_proxy_sharing_enabled">允許來自區域網路的連線</string>

@@ -250,6 +250,8 @@
     <string name="title_pref_copy_hwid">HWID কপি করুন</string>
     <string name="summary_pref_copy_hwid">সাবস্ক্রিপশন আপডেটের সময় পাঠানো HWID কপি করুন</string>
     <string name="title_pref_custom_user_agent">সাবস্ক্রিপশন User-Agent (খালি = ডিফল্ট)</string>
+    <string name="title_pref_custom_device_model">ডিভাইস মডেল, x-device-model (খালি = Generic)</string>
+    <string name="title_pref_custom_os_version">OS সংস্করণ, x-ver-os (খালি = পাঠানো হবে না)</string>
     <string name="toast_invalid_header_value">শুধুমাত্র প্রিন্টযোগ্য ASCII অক্ষর অনুমোদিত</string>
 
     <string name="title_pref_proxy_sharing_enabled">LAN থেকে সংযোগ অনুমোদন করুন</string>

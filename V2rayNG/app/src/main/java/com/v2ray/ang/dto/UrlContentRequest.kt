@@ -8,5 +8,7 @@ data class UrlContentRequest(
     val proxyPassword: String? = null,
     val userAgent: String? = null,
     val requestHeaders: String? = null,
-    val hwid: String? = null
+    val hwid: String? = null,
+    val deviceModel: String? = null,
+    val osVersion: String? = null
 )

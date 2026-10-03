@@ -250,6 +250,8 @@
     <string name="title_pref_copy_hwid">کپی HWID</string>
     <string name="summary_pref_copy_hwid">کپی HWID ارسال‌شده هنگام به‌روزرسانی اشتراک‌ها</string>
     <string name="title_pref_custom_user_agent">User-Agent اشتراک (خالی = پیش‌فرض)</string>
+    <string name="title_pref_custom_device_model">مدل دستگاه، x-device-model (خالی = Generic)</string>
+    <string name="title_pref_custom_os_version">نسخه سیستم‌عامل، x-ver-os (خالی = ارسال نشود)</string>
     <string name="toast_invalid_header_value">فقط نویسه‌های ASCII قابل چاپ مجاز هستند</string>
 
     <string name="title_pref_proxy_sharing_enabled">اشتراک‌گذاری پروکسی در شبکه محلی (LAN)</string>

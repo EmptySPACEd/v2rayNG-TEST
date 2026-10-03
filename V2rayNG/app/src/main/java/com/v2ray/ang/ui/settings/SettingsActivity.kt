@@ -184,6 +184,8 @@ fun SettingsScreen(
     var ipApiUrl by rememberMmkvString(AppConfig.PREF_IP_API_URL, "")
     var customHwid by rememberMmkvString(AppConfig.PREF_CUSTOM_HWID, "")
     var customUserAgent by rememberMmkvString(AppConfig.PREF_CUSTOM_USER_AGENT, "")
+    var customDeviceModel by rememberMmkvString(AppConfig.PREF_CUSTOM_DEVICE_MODEL, "")
+    var customOsVersion by rememberMmkvString(AppConfig.PREF_CUSTOM_OS_VERSION, "")
 
     val isVpn = mode == VPN
     val hevTunEnabled = isVpn && useHevTun
@@ -691,6 +693,24 @@ fun SettingsScreen(
                     onValueChanged = {
                         viewModel.validateHeaderValue(it)?.let { value ->
                             customUserAgent = value
+                        }
+                    }
+                )
+                SettingsEditItem(
+                    title = stringResource(R.string.title_pref_custom_device_model),
+                    value = customDeviceModel,
+                    onValueChanged = {
+                        viewModel.validateHeaderValue(it)?.let { value ->
+                            customDeviceModel = value
+                        }
+                    }
+                )
+                SettingsEditItem(
+                    title = stringResource(R.string.title_pref_custom_os_version),
+                    value = customOsVersion,
+                    onValueChanged = {
+                        viewModel.validateHeaderValue(it)?.let { value ->
+                            customOsVersion = value
                         }
                     }
                 )
