@@ -25,17 +25,41 @@ import com.v2ray.ang.handler.MmkvManager.decodeSubsList
 import com.v2ray.ang.handler.MmkvManager.decodeSubscription
 import com.v2ray.ang.handler.MmkvManager.encodeSubscription
 import com.v2ray.ang.handler.MmkvManager.removeSubscription
+import com.v2ray.ang.util.HttpUtil
 import com.v2ray.ang.util.JsonUtil
 import com.v2ray.ang.util.LogUtil
 import com.v2ray.ang.util.Utils
 import java.io.File
 import java.io.FileOutputStream
+import java.util.UUID
 import kotlin.random.Random
 
 object SettingsManager {
 
     @Volatile
     private var runtimeSocksPort: Int? = null
+
+    /**
+     * Returns the HWID sent to subscription servers: the user's custom value when set and valid,
+     * otherwise a UUID that is generated once and persisted.
+     * Reads and writes MMKV, so call it off the main thread.
+     */
+    @Synchronized
+    fun getHwid(): String {
+        val custom = HttpUtil.normalizeHeaderValue(MmkvManager.decodeSettingsString(AppConfig.PREF_CUSTOM_HWID))
+        if (!custom.isNullOrEmpty()) return custom
+        val saved = MmkvManager.decodeSettingsString(AppConfig.PREF_GENERATED_HWID)
+        if (!saved.isNullOrBlank()) return saved
+        return UUID.randomUUID().toString().also { MmkvManager.encodeSettings(AppConfig.PREF_GENERATED_HWID, it) }
+    }
+
+    /**
+     * Returns the global User-Agent override for subscription requests, or null to use the default.
+     */
+    fun getCustomUserAgent(): String? {
+        return HttpUtil.normalizeHeaderValue(MmkvManager.decodeSettingsString(AppConfig.PREF_CUSTOM_USER_AGENT))
+            ?.takeIf { it.isNotEmpty() }
+    }
 
     fun initApp(context: Context) {
         ensureDefaultSettings()

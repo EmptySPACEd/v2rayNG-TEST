@@ -89,7 +89,8 @@ class SettingsActivity : BaseComponentActivity() {
             viewModel = viewModel,
             onBackClick = { finish() },
             onModeHelpClicked = { Utils.openUri(this, AppConfig.APP_WIKI_MODE) },
-            onSystemVpnSettingsClicked = ::openSystemVpnSettings
+            onSystemVpnSettingsClicked = ::openSystemVpnSettings,
+            onCopyHwidClicked = viewModel::copyHwid
         )
     }
 }
@@ -100,7 +101,8 @@ fun SettingsScreen(
     viewModel: SettingsViewModel,
     onBackClick: () -> Unit,
     onModeHelpClicked: () -> Unit,
-    onSystemVpnSettingsClicked: () -> Unit
+    onSystemVpnSettingsClicked: () -> Unit,
+    onCopyHwidClicked: () -> Unit
 ) {
     val scrollState = rememberScrollState()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
@@ -180,6 +182,8 @@ fun SettingsScreen(
     var delayTestUrl by rememberMmkvString(AppConfig.PREF_DELAY_TEST_URL, "")
     var realPingConcurrency by rememberMmkvString(AppConfig.PREF_REAL_PING_CONCURRENCY, "16")
     var ipApiUrl by rememberMmkvString(AppConfig.PREF_IP_API_URL, "")
+    var customHwid by rememberMmkvString(AppConfig.PREF_CUSTOM_HWID, "")
+    var customUserAgent by rememberMmkvString(AppConfig.PREF_CUSTOM_USER_AGENT, "")
 
     val isVpn = mode == VPN
     val hevTunEnabled = isVpn && useHevTun
@@ -666,6 +670,29 @@ fun SettingsScreen(
                     title = stringResource(R.string.title_pref_ip_api_url),
                     value = ipApiUrl,
                     onValueChanged = { ipApiUrl = it }
+                )
+                SettingsEditItem(
+                    title = stringResource(R.string.title_pref_custom_hwid),
+                    value = customHwid,
+                    onValueChanged = {
+                        viewModel.validateHeaderValue(it)?.let { value ->
+                            customHwid = value
+                        }
+                    }
+                )
+                SettingsMenuItem(
+                    title = stringResource(R.string.title_pref_copy_hwid),
+                    subtitle = stringResource(R.string.summary_pref_copy_hwid),
+                    onClick = onCopyHwidClicked
+                )
+                SettingsEditItem(
+                    title = stringResource(R.string.title_pref_custom_user_agent),
+                    value = customUserAgent,
+                    onValueChanged = {
+                        viewModel.validateHeaderValue(it)?.let { value ->
+                            customUserAgent = value
+                        }
+                    }
                 )
             }
 

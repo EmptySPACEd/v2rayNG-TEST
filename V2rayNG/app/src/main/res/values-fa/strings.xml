@@ -246,6 +246,11 @@
 
     <string name="title_pref_ip_api_url">URL آزمایش اطلاعات اتصال فعلی</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>
+    <string name="title_pref_custom_hwid">HWID سفارشی (خالی = UUID خودکار)</string>
+    <string name="title_pref_copy_hwid">کپی HWID</string>
+    <string name="summary_pref_copy_hwid">کپی HWID ارسال‌شده هنگام به‌روزرسانی اشتراک‌ها</string>
+    <string name="title_pref_custom_user_agent">User-Agent اشتراک (خالی = پیش‌فرض)</string>
+    <string name="toast_invalid_header_value">فقط نویسه‌های ASCII قابل چاپ مجاز هستند</string>
 
     <string name="title_pref_proxy_sharing_enabled">اشتراک‌گذاری پروکسی در شبکه محلی (LAN)</string>
     <string name="summary_pref_proxy_sharing_enabled">دستگاه‌های دیگر می‌توانند با وارد کردن IP شما، از پروکسی‌تان استفاده کنند. برای جلوگیری از سوءاستفاده، فقط در شبکه‌های امن و قابل اعتماد این گزینه را روشن کنید.</string>

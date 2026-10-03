@@ -246,6 +246,11 @@
 
     <string name="title_pref_ip_api_url">当前连接信息测试网址</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>
+    <string name="title_pref_custom_hwid">自定义 HWID（留空 = 自动生成 UUID）</string>
+    <string name="title_pref_copy_hwid">复制 HWID</string>
+    <string name="summary_pref_copy_hwid">复制更新订阅时发送的 HWID</string>
+    <string name="title_pref_custom_user_agent">订阅 User-Agent（留空 = 默认）</string>
+    <string name="toast_invalid_header_value">仅允许可打印的 ASCII 字符</string>
 
     <string name="title_pref_proxy_sharing_enabled">允许来自局域网的连接</string>
     <string name="summary_pref_proxy_sharing_enabled">其他设备可以使用 socks/http 协议通过您的 IP 地址连接到代理, 仅在受信任的网络中启用以避免未经授权的连接</string>

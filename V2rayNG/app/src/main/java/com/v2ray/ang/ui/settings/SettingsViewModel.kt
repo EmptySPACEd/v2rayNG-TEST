@@ -3,19 +3,27 @@ package com.v2ray.ang.ui.settings
 import android.app.Application
 import android.content.Intent
 import android.provider.Settings
+import androidx.lifecycle.viewModelScope
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.R
+import com.v2ray.ang.handler.SettingsManager
 import com.v2ray.ang.root.RootManager
 import com.v2ray.ang.ui.base.BaseViewModel
+import com.v2ray.ang.util.HttpUtil
+import com.v2ray.ang.util.Utils
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SettingsViewModel(application: Application) : BaseViewModel(application) {
 
     private val _systemVpnSettingsAvailable = MutableStateFlow(false)
     val systemVpnSettingsAvailable = _systemVpnSettingsAvailable.asStateFlow()
+
+    private var copyHwidJob: Job? = null
 
     suspend fun refreshSystemVpnSettingsAvailability() {
         _systemVpnSettingsAvailable.value = withContext(Dispatchers.IO) {
@@ -68,6 +76,32 @@ class SettingsViewModel(application: Application) : BaseViewModel(application) {
         } else {
             toastError(R.string.toast_invalid_observatory_sampling)
             null
+        }
+    }
+
+    /**
+     * Validates a value that is sent as an HTTP header (custom HWID or User-Agent).
+     * Shows error toast if it contains characters outside printable ASCII.
+     * @return The trimmed value (possibly empty) if valid, null otherwise.
+     */
+    fun validateHeaderValue(value: String): String? {
+        val normalized = HttpUtil.normalizeHeaderValue(value)
+        if (normalized == null) {
+            toastError(R.string.toast_invalid_header_value)
+        }
+        return normalized
+    }
+
+    /**
+     * Copies the HWID that subscription requests send to the clipboard.
+     * Generates and persists one first when no custom value is set.
+     */
+    fun copyHwid() {
+        copyHwidJob?.cancel()
+        copyHwidJob = viewModelScope.launch {
+            val hwid = withContext(Dispatchers.IO) { SettingsManager.getHwid() }
+            Utils.setClipboard(getApplication<Application>(), hwid)
+            toastSuccess(R.string.toast_success)
         }
     }
 }

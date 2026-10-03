@@ -246,6 +246,11 @@
 
     <string name="title_pref_ip_api_url">عنوان URL لاختبار معلومات الاتصال الحالي</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>
+    <string name="title_pref_custom_hwid">HWID مخصص (فارغ = UUID تلقائي)</string>
+    <string name="title_pref_copy_hwid">نسخ HWID</string>
+    <string name="summary_pref_copy_hwid">نسخ HWID المُرسَل عند تحديث الاشتراكات</string>
+    <string name="title_pref_custom_user_agent">User-Agent للاشتراكات (فارغ = الافتراضي)</string>
+    <string name="toast_invalid_header_value">يُسمح فقط بأحرف ASCII القابلة للطباعة</string>
 
     <string name="title_pref_proxy_sharing_enabled">السماح بالاتصالات من الشبكة المحلية</string>
     <string name="summary_pref_proxy_sharing_enabled">يمكن للأجهزة الأخرى الاتصال بالبروكسي بواسطة عنوان IP الخاص بك من خلال socks/http، يتم التمكين فقط في الشبكة الموثوقة لتجنب الاتصال غير المصرح به</string>

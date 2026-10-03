@@ -246,6 +246,11 @@
 
     <string name="title_pref_ip_api_url">বর্তমান সংযোগের তথ্য পরীক্ষার URL</string>
     <string name="summary_pref_ip_api_url" translatable="false">URL</string>
+    <string name="title_pref_custom_hwid">কাস্টম HWID (খালি = স্বয়ংক্রিয় UUID)</string>
+    <string name="title_pref_copy_hwid">HWID কপি করুন</string>
+    <string name="summary_pref_copy_hwid">সাবস্ক্রিপশন আপডেটের সময় পাঠানো HWID কপি করুন</string>
+    <string name="title_pref_custom_user_agent">সাবস্ক্রিপশন User-Agent (খালি = ডিফল্ট)</string>
+    <string name="toast_invalid_header_value">শুধুমাত্র প্রিন্টযোগ্য ASCII অক্ষর অনুমোদিত</string>
 
     <string name="title_pref_proxy_sharing_enabled">LAN থেকে সংযোগ অনুমোদন করুন</string>
     <string name="summary_pref_proxy_sharing_enabled">অন্যান্য ডিভাইসগুলি আপনার আইপি ঠিকানা ব্যবহার করে প্রক্সিতে সংযুক্ত হতে পারে, শুধুমাত্র বিশ্বস্ত নেটওয়ার্কে সক্রিয় করুন যাতে অনুমোদিত সংযোগ এড়ানো যায়</string>

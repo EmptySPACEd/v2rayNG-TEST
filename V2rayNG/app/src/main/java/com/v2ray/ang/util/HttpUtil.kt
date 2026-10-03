@@ -21,6 +21,41 @@ import java.util.concurrent.TimeUnit
 
 object HttpUtil {
 
+    const val HEADER_HWID = "x-hwid"
+    const val HEADER_DEVICE_OS = "x-device-os"
+    const val HEADER_DEVICE_MODEL = "x-device-model"
+    const val DEVICE_OS = "Android"
+    const val DEVICE_MODEL = "Generic"
+
+    /**
+     * Validates a user-entered value that will be sent as an HTTP header value.
+     *
+     * OkHttp throws [IllegalArgumentException] for control or non-ASCII characters, which would
+     * make every subscription update fail, so such values are rejected up front.
+     *
+     * @param value The raw value; leading and trailing whitespace is ignored.
+     * @return The trimmed value (empty if blank), or null if it contains characters outside printable ASCII.
+     */
+    fun normalizeHeaderValue(value: String?): String? {
+        val trimmed = value.orEmpty().trim()
+        return if (trimmed.all { it.code in 0x20..0x7E }) trimmed else null
+    }
+
+    /**
+     * Adds the device identification headers used by subscription providers for device limits.
+     * Does nothing when [hwid] is null or blank.
+     *
+     * @param requestBuilder The request builder to modify.
+     * @param hwid The hardware identifier to send as `x-hwid`.
+     */
+    fun applyDeviceHeaders(requestBuilder: Request.Builder, hwid: String?) {
+        if (hwid.isNullOrBlank()) return
+        requestBuilder
+            .header(HEADER_HWID, hwid)
+            .header(HEADER_DEVICE_OS, DEVICE_OS)
+            .header(HEADER_DEVICE_MODEL, DEVICE_MODEL)
+    }
+
     /**
      * Converts the domain part of a URL string to its IDN (Punycode, ASCII Compatible Encoding) format.
      *
@@ -163,7 +198,8 @@ object HttpUtil {
                 .header("Connection", "close")
 
             applyEmbeddedBasicAuthHeader(currentUrl, requestBuilder)
-
+            // Applied before the subscription's own request headers so those can override them.
+            applyDeviceHeaders(requestBuilder, request.hwid)
 
             val headersMap = JsonUtil.parseHeadersToMap(request.requestHeaders)
             for ((key, value) in headersMap) {
